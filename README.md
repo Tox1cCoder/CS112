@@ -21,9 +21,9 @@
 
 | STT   | Họ tên                 | MSSV       | Vai trò     | Email                  | 
 | :---: | ---                    | ---        | ---         | ---                    | 
-| 1     | <strong>  Nguyễn Hoàng Vĩ </strong>  | 21522786   | Nhóm trưởng | 21522786@gm.uit.edu.vn |            
-| 2     |<strong> Đỗ Thành Nhân   | 21522400   | Thành viên  | 21522400@gm.uit.edu.vn | 
-| 3     | <strong>Đào Nam Thuận         | 21522649   | Thành viên  | 21522649@gm.uit.edu.vn | 
+| 1     | <strong>  Nguyễn Duy Thái </strong>  | 21522581   | Nhóm trưởng | 21522581@gm.uit.edu.vn |            
+| 2     |<strong> Đỗ Minh Nhật   | 2152   | Thành viên  | 2152@gm.uit.edu.vn | 
+| 3     | <strong>         | 2152   | Thành viên  | 2152@gm.uit.edu.vn | 
  
 
 ## CHỦ ĐỀ BÁO CÁO
