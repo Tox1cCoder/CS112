@@ -22,10 +22,10 @@
 | STT   | Họ tên                 | MSSV       | Vai trò     | Email                  | 
 | :---: | ---                    | ---        | ---         | ---                    | 
 | 1 | <strong> Nguyễn Duy Thái | 21522581 | Nhóm trưởng | 21522581@gm.uit.edu.vn |            
-| 2 | <strong> Đinh Vũ Minh Nhật | 2152   | Thành viên  | 2152@gm.uit.edu.vn | 
-| 3 | <strong> Vũ Nam Phương| 2152 | Thành viên | 2152@gm.uit.edu.vn| 
+| 2 | <strong> Đinh Vũ Minh Nhật | 21522414   | Thành viên  | 21522414@gm.uit.edu.vn | 
+| 3 | <strong> Vũ Nam Phương| 21521315 | Thành viên | 21521315@gm.uit.edu.vn| 
  
 
 ## CHỦ ĐỀ BÁO CÁO
 * **Số thứ tự chủ đề:** 9
-* **Tên chủ đề:**  DYNAMIC PROGRAMMING
+* **Tên chủ đề:**  DYNAMIC PROGRAMMING (1)
