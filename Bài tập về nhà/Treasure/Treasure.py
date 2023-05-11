@@ -1,60 +1,56 @@
-from collections import deque
+import heapq
 
-INF = int(1e9 + 7)
-maze = [[0] * 14 for _ in range(14)]
-dx = [0, 0, -1, 1]
-dy = [1, -1, 0, 0]
+memo = {(i, 0): 0 for i in range(1 << 5)}
+size = int(input())
+board = [list(input()) for _ in range(size)]
+e = []
 
+def dp(mask, curr_treasure):
+    if (mask, curr_treasure) in memo:
+        return memo[(mask, curr_treasure)]
+        
+    if mask == (1 << len(e)) - 1:
+        return abs(size - 1 - curr_treasure[0]) + abs(size - 1 - curr_treasure[1])
+        
+    min_distance = float('inf')
+    
+    for i, treasure in enumerate(e):
+        if mask & (1 << i) == 0:
+            next_distance = abs(treasure[0] - curr_treasure[0]) + abs(treasure[1] - curr_treasure[1])
+            new_mask = mask | (1 << i)
+            subproblem = dp(new_mask, treasure)
+            min_distance = min(min_distance, next_distance + subproblem)
 
-class Node:
-    def __init__(self, x, y, val):
-        self.x = x
-        self.y = y
-        self.val = val
+    memo[(mask, curr_treasure)] = min_distance
+    return min_distance
 
-
-def valid(x, y):
-    if x < 0 or x >= n or y >= n or y < 0 or maze[x][y] == -2:
-        return False
-    return True
-
-
-def solve(cnt):
-    q = deque()
-    dp = [[[INF] * 14 for _ in range(15)] for _ in range(1 << 14)]
-    dp[0][0][0] = 0
-    q.append(Node(0, 0, 0))
-    while len(q) > 0:
-        curr = q.popleft()
-        x, y, val = curr.x, curr.y, curr.val
-        for i in range(4):
-            nx, ny = x + dx[i], y + dy[i]
-            newval = curr.val
-            if not valid(nx, ny):
-                continue
-            if maze[nx][ny] >= 0:
-                newval |= 1 << maze[nx][ny]
-            if dp[newval][nx][ny] > dp[val][x][y] + 1:
-                dp[newval][nx][ny] = dp[val][x][y] + 1
-                if nx == n - 1 and ny == n - 1 and newval == ((1 << cnt) - 1):
-                    return dp[(1 << cnt) - 1][nx][ny]
-                ns = Node(nx, ny, newval)
-                q.append(ns)
-
+def find_shortest_path(start, end, treasures):
+    pq = [(0, start, set())]
+    visited = set()
+    while pq:
+        cost, current, collected = heapq.heappop(pq)
+        
+        if current == end and len(collected) == len(treasures):
+            return cost
+            
+        if (current, tuple(collected)) in visited:
+            continue
+            
+        visited.add((current, tuple(collected)))
+        i, j = current
+        
+        for x, y in [(i+1, j), (i-1, j), (i, j+1), (i, j-1)]:
+            if 0 <= x < size and 0 <= y < size and board[x][y] != '#':
+                new_collected = collected.copy()
+                if board[x][y] == '*':
+                    new_collected.add((x, y))
+                new_cost = cost + 1
+                new_state = (new_cost, (x, y), new_collected)
+                if (x, y, tuple(new_collected)) not in visited:
+                    heapq.heappush(pq, new_state)
     return -1
 
-
-n = int(input())
-cnt = 0
-arr = [list(input().strip()) for _ in range(n)]
-for i in range(n):
-    for j in range(n):
-        if arr[i][j] == '.':
-            maze[i][j] = -1
-        elif arr[i][j] == '#':
-            maze[i][j] = -2
-        else:
-            maze[i][j] = cnt
-            cnt += 1
-
-print(solve(cnt))
+start = (0, 0)
+end = (size-1, size-1)
+q = [(i, j) for i in range(size) for j in range(size) if board[i][j] == '*']
+print(find_shortest_path(start, end, set(q)))
